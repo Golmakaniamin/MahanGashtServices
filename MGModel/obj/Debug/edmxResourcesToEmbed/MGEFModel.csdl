@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MahanGashtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agency">
+    <Key>
+      <PropertyRef Name="AgencyId" />
+    </Key>
+    <Property Name="AgencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="CooperativeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RegionCodes" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="MaxCallDuration" Type="Int32" />
+    <Property Name="MaxCallTimes" Type="Int32" />
+    <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SMSNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="sCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AgencyBills" Relationship="Self.FK_AgencyBill_Agencies" FromRole="Agencies" ToRole="AgencyBill" />
+    <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Long" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AgencyBill">
+    <Key>
+      <PropertyRef Name="AgencyBillId" />
+    </Key>
+    <Property Name="AgencyBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgencyId" Type="Int32" />
+    <Property Name="MonthlyMembership" Type="Int32" />
+    <Property Name="SupportExpense" Type="Int32" />
+    <Property Name="CallExpense" Type="Int32" />
+    <Property Name="DueDate" Type="DateTime" Precision="0" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="SMSSent" Type="Boolean" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="AmountToPay" Type="Int32" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CallsCount" Type="Int32" />
+    <NavigationProperty Name="Agency" Relationship="Self.FK_AgencyBill_Agencies" FromRole="AgencyBill" ToRole="Agencies" />
+  </EntityType>
+  <EntityType Name="Call">
+    <Key>
+      <PropertyRef Name="CallId" />
+    </Key>
+    <Property Name="CallId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CallTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="CallerId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CalledId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CIdPart" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="AgencyId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CallType">
+    <Key>
+      <PropertyRef Name="CallTypeId" />
+    </Key>
+    <Property Name="CallTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="Int32" />
+    <Property Name="AgencyId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DriverBill">
+    <Key>
+      <PropertyRef Name="DriverBillId" />
+    </Key>
+    <Property Name="DriverBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DriverId" Type="Int32" Nullable="false" />
+    <Property Name="MonthlyMembership" Type="Int32" />
+    <Property Name="SupportExpense" Type="Int32" />
+    <Property Name="CallExpense" Type="Int32" />
+    <Property Name="DueDate" Type="DateTime" Precision="0" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="SMSSent" Type="Boolean" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="AmountToPay" Type="Int32" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CallsCount" Type="Int32" />
+    <NavigationProperty Name="Driver" Relationship="Self.FK_DriverBill_Drivers" FromRole="DriverBill" ToRole="Drivers" />
+  </EntityType>
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="DriverId" />
+    </Key>
+    <Property Name="DriverId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="RegionCodes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="MaxCallDuration" Type="Int32" />
+    <Property Name="MaxCallTimes" Type="Int32" />
+    <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DriverBills" Relationship="Self.FK_DriverBill_Drivers" FromRole="Drivers" ToRole="DriverBill" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="ServiceTypeId" />
+    </Key>
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Items" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerType" Type="Int32" Nullable="false" />
+    <Property Name="M1" Type="Int32" />
+    <Property Name="M2" Type="Int32" />
+    <Property Name="M3" Type="Int32" />
+    <Property Name="A1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FromNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ToNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PCreated" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VAgency">
+    <Key>
+      <PropertyRef Name="AgencyId" />
+      <PropertyRef Name="ServiceTypeId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="CooperativeCode" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Phones" />
+      <PropertyRef Name="RegionCodes" />
+      <PropertyRef Name="Vehicles" />
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="RowId" Type="Int64" />
+    <Property Name="AgencyId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="CooperativeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RegionCodes" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="MaxCallDuration" Type="Int32" />
+    <Property Name="MaxCallTimes" Type="Int32" />
+    <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SMSNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VCall">
+    <Key>
+      <PropertyRef Name="CallId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Time" />
+      <PropertyRef Name="Duration" />
+      <PropertyRef Name="CallTypeId" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="ServiceType" />
+      <PropertyRef Name="ServiceTypeId" />
+    </Key>
+    <Property Name="CallId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Time" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="CallerId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AgencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DriverName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CallTypeId" Type="Int32" Nullable="false" />
+    <Property Name="CalledId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="CIdPart" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VCustomer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="AgencyId" />
+      <PropertyRef Name="AgencyName" />
+      <PropertyRef Name="AgencyPhones" />
+    </Key>
+    <Property Name="RowId" Type="Int64" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="Int32" />
+    <Property Name="AgencyId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AgencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AgencyPhones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VDriver">
+    <Key>
+      <PropertyRef Name="DriverId" />
+      <PropertyRef Name="ServiceTypeId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Services" />
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="RowId" Type="Int64" />
+    <Property Name="DriverId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="RegionCodes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="MaxCallDuration" Type="Int32" />
+    <Property Name="MaxCallTimes" Type="Int32" />
+    <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AgencyBill_Agencies">
+    <End Role="Agencies" Type="Self.Agency" Multiplicity="0..1" />
+    <End Role="AgencyBill" Type="Self.AgencyBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agencies">
+        <PropertyRef Name="AgencyId" />
+      </Principal>
+      <Dependent Role="AgencyBill">
+        <PropertyRef Name="AgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverBill_Drivers">
+    <End Role="Drivers" Type="Self.Driver" Multiplicity="1" />
+    <End Role="DriverBill" Type="Self.DriverBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="DriverId" />
+      </Principal>
+      <Dependent Role="DriverBill">
+        <PropertyRef Name="DriverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MahanGashtEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agencies" EntityType="Self.Agency" />
+    <EntitySet Name="AgencyBills" EntityType="Self.AgencyBill" />
+    <EntitySet Name="Calls" EntityType="Self.Call" />
+    <EntitySet Name="CallTypes" EntityType="Self.CallType" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="DriverBills" EntityType="Self.DriverBill" />
+    <EntitySet Name="Drivers" EntityType="Self.Driver" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
+    <EntitySet Name="SMS" EntityType="Self.SM" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="VAgencies" EntityType="Self.VAgency" />
+    <EntitySet Name="VCalls" EntityType="Self.VCall" />
+    <EntitySet Name="VCustomers" EntityType="Self.VCustomer" />
+    <EntitySet Name="VDrivers" EntityType="Self.VDriver" />
+    <AssociationSet Name="FK_AgencyBill_Agencies" Association="Self.FK_AgencyBill_Agencies">
+      <End Role="Agencies" EntitySet="Agencies" />
+      <End Role="AgencyBill" EntitySet="AgencyBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverBill_Drivers" Association="Self.FK_DriverBill_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="DriverBill" EntitySet="DriverBills" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

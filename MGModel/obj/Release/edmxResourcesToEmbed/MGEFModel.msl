@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MahanGashtModelStoreContainer" CdmEntityContainer="MahanGashtEntities">
+    <EntitySetMapping Name="Agencies">
+      <EntityTypeMapping TypeName="MahanGashtModel.Agency">
+        <MappingFragment StoreEntitySet="Agencies">
+          <ScalarProperty Name="Long" ColumnName="Long" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="CooperativeCode" ColumnName="CooperativeCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phones" ColumnName="Phones" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Manager" ColumnName="Manager" />
+          <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Vehicles" ColumnName="Vehicles" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+          <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+          <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+          <ScalarProperty Name="SMSNumber" ColumnName="SMSNumber" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="sCode" ColumnName="sCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgencyBills">
+      <EntityTypeMapping TypeName="MahanGashtModel.AgencyBill">
+        <MappingFragment StoreEntitySet="AgencyBill">
+          <ScalarProperty Name="AgencyBillId" ColumnName="AgencyBillId" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+          <ScalarProperty Name="MonthlyMembership" ColumnName="MonthlyMembership" />
+          <ScalarProperty Name="SupportExpense" ColumnName="SupportExpense" />
+          <ScalarProperty Name="CallExpense" ColumnName="CallExpense" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="SMSSent" ColumnName="SMSSent" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="CallsCount" ColumnName="CallsCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Calls">
+      <EntityTypeMapping TypeName="MahanGashtModel.Call">
+        <MappingFragment StoreEntitySet="Calls">
+          <ScalarProperty Name="CallId" ColumnName="CallId" />
+          <ScalarProperty Name="CallTypeId" ColumnName="CallTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+          <ScalarProperty Name="CalledId" ColumnName="CalledId" />
+          <ScalarProperty Name="CIdPart" ColumnName="CIdPart" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CallTypes">
+      <EntityTypeMapping TypeName="MahanGashtModel.CallType">
+        <MappingFragment StoreEntitySet="CallTypes">
+          <ScalarProperty Name="CallTypeId" ColumnName="CallTypeId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="MahanGashtModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverBills">
+      <EntityTypeMapping TypeName="MahanGashtModel.DriverBill">
+        <MappingFragment StoreEntitySet="DriverBill">
+          <ScalarProperty Name="DriverBillId" ColumnName="DriverBillId" />
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="MonthlyMembership" ColumnName="MonthlyMembership" />
+          <ScalarProperty Name="SupportExpense" ColumnName="SupportExpense" />
+          <ScalarProperty Name="CallExpense" ColumnName="CallExpense" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="SMSSent" ColumnName="SMSSent" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="CallsCount" ColumnName="CallsCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drivers">
+      <EntityTypeMapping TypeName="MahanGashtModel.Driver">
+        <MappingFragment StoreEntitySet="Drivers">
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Services" ColumnName="Services" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+          <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+          <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTypes">
+      <EntityTypeMapping TypeName="MahanGashtModel.ServiceType">
+        <MappingFragment StoreEntitySet="ServiceTypes">
+          <ScalarProperty Name="A1" ColumnName="A1" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Items" ColumnName="Items" />
+          <ScalarProperty Name="OwnerType" ColumnName="OwnerType" />
+          <ScalarProperty Name="M1" ColumnName="M1" />
+          <ScalarProperty Name="M2" ColumnName="M2" />
+          <ScalarProperty Name="M3" ColumnName="M3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SMS">
+      <EntityTypeMapping TypeName="MahanGashtModel.SM">
+        <MappingFragment StoreEntitySet="SMS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="FromNumber" ColumnName="FromNumber" />
+          <ScalarProperty Name="ToNumber" ColumnName="ToNumber" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="PCreated" ColumnName="PCreated" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MahanGashtModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VAgencies">
+      <EntityTypeMapping TypeName="MahanGashtModel.VAgency">
+        <MappingFragment StoreEntitySet="VAgencies">
+          <ScalarProperty Name="RowId" ColumnName="RowId" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="CooperativeCode" ColumnName="CooperativeCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phones" ColumnName="Phones" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Manager" ColumnName="Manager" />
+          <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Vehicles" ColumnName="Vehicles" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+          <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+          <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+          <ScalarProperty Name="SMSNumber" ColumnName="SMSNumber" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VCalls">
+      <EntityTypeMapping TypeName="MahanGashtModel.VCall">
+        <MappingFragment StoreEntitySet="VCalls">
+          <ScalarProperty Name="CallId" ColumnName="CallId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+          <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="CallTypeId" ColumnName="CallTypeId" />
+          <ScalarProperty Name="CalledId" ColumnName="CalledId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="CIdPart" ColumnName="CIdPart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VCustomers">
+      <EntityTypeMapping TypeName="MahanGashtModel.VCustomer">
+        <MappingFragment StoreEntitySet="VCustomers">
+          <ScalarProperty Name="RowId" ColumnName="RowId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+          <ScalarProperty Name="AgencyPhones" ColumnName="AgencyPhones" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VDrivers">
+      <EntityTypeMapping TypeName="MahanGashtModel.VDriver">
+        <MappingFragment StoreEntitySet="VDrivers">
+          <ScalarProperty Name="RowId" ColumnName="RowId" />
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Services" ColumnName="Services" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+          <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+          <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

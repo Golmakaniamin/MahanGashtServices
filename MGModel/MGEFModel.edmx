@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MahanGashtModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agencies">
+          <Key>
+            <PropertyRef Name="AgencyId" />
+          </Key>
+          <Property Name="AgencyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="CooperativeCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phones" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="Manager" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegionCodes" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Vehicles" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="MaxCallDuration" Type="int" />
+          <Property Name="MaxCallTimes" Type="int" />
+          <Property Name="VirtualPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="SMSNumber" Type="varchar" MaxLength="20" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="sCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Long" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AgencyBill">
+          <Key>
+            <PropertyRef Name="AgencyBillId" />
+          </Key>
+          <Property Name="AgencyBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgencyId" Type="int" />
+          <Property Name="MonthlyMembership" Type="int" />
+          <Property Name="SupportExpense" Type="int" />
+          <Property Name="CallExpense" Type="int" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="Paid" Type="bit" Nullable="false" />
+          <Property Name="SMSSent" Type="bit" Nullable="false" />
+          <Property Name="FromDate" Type="date" />
+          <Property Name="ToDate" Type="date" />
+          <Property Name="AmountToPay" Type="int" />
+          <Property Name="Created" Type="date" Nullable="false" />
+          <Property Name="CallsCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Calls">
+          <Key>
+            <PropertyRef Name="CallId" />
+          </Key>
+          <Property Name="CallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CallTypeId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Date" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Time" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="CallerId" Type="varchar" MaxLength="25" />
+          <Property Name="CalledId" Type="varchar" MaxLength="25" />
+          <Property Name="CIdPart" Type="varchar" MaxLength="12" />
+          <Property Name="AgencyId" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CallTypes">
+          <Key>
+            <PropertyRef Name="CallTypeId" />
+          </Key>
+          <Property Name="CallTypeId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="int" />
+          <Property Name="AgencyId" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="DriverBill">
+          <Key>
+            <PropertyRef Name="DriverBillId" />
+          </Key>
+          <Property Name="DriverBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverId" Type="int" Nullable="false" />
+          <Property Name="MonthlyMembership" Type="int" />
+          <Property Name="SupportExpense" Type="int" />
+          <Property Name="CallExpense" Type="int" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="Paid" Type="bit" Nullable="false" />
+          <Property Name="SMSSent" Type="bit" Nullable="false" />
+          <Property Name="FromDate" Type="date" />
+          <Property Name="ToDate" Type="date" />
+          <Property Name="AmountToPay" Type="int" />
+          <Property Name="Created" Type="date" Nullable="false" />
+          <Property Name="CallsCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="DriverId" />
+          </Key>
+          <Property Name="DriverId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="RegionCodes" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Services" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="MaxCallDuration" Type="int" />
+          <Property Name="MaxCallTimes" Type="int" />
+          <Property Name="VirtualPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ServiceTypes">
+          <Key>
+            <PropertyRef Name="ServiceTypeId" />
+          </Key>
+          <Property Name="ServiceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Items" Type="nvarchar(max)" />
+          <Property Name="OwnerType" Type="int" Nullable="false" />
+          <Property Name="M1" Type="int" />
+          <Property Name="M2" Type="int" />
+          <Property Name="M3" Type="int" />
+          <Property Name="A1" Type="int" />
+        </EntityType>
+        <EntityType Name="SMS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FromNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="ToNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="PCreated" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MahanGasht.dbo.VAgencies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VAgencies">
+          <Key>
+            <PropertyRef Name="AgencyId" />
+            <PropertyRef Name="ServiceTypeId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="CooperativeCode" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Phones" />
+            <PropertyRef Name="RegionCodes" />
+            <PropertyRef Name="Vehicles" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="RowId" Type="bigint" />
+          <Property Name="AgencyId" Type="int" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="CooperativeCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phones" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="Manager" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegionCodes" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Vehicles" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="MaxCallDuration" Type="int" />
+          <Property Name="MaxCallTimes" Type="int" />
+          <Property Name="VirtualPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="SMSNumber" Type="varchar" MaxLength="20" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MahanGasht.dbo.VCalls' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VCalls">
+          <Key>
+            <PropertyRef Name="CallId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Time" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="CallTypeId" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="ServiceType" />
+            <PropertyRef Name="ServiceTypeId" />
+          </Key>
+          <Property Name="CallId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Date" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Time" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="CallerId" Type="varchar" MaxLength="20" />
+          <Property Name="AgencyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DriverName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CallTypeId" Type="int" Nullable="false" />
+          <Property Name="CalledId" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ServiceType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="int" Nullable="false" />
+          <Property Name="CIdPart" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MahanGasht.dbo.VCustomers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VCustomers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="AgencyId" />
+            <PropertyRef Name="AgencyName" />
+            <PropertyRef Name="AgencyPhones" />
+          </Key>
+          <Property Name="RowId" Type="bigint" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="int" />
+          <Property Name="AgencyId" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="AgencyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgencyPhones" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MahanGasht.dbo.VDrivers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VDrivers">
+          <Key>
+            <PropertyRef Name="DriverId" />
+            <PropertyRef Name="ServiceTypeId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Services" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="RowId" Type="bigint" />
+          <Property Name="DriverId" Type="int" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="RegionCodes" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Services" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="MaxCallDuration" Type="int" />
+          <Property Name="MaxCallTimes" Type="int" />
+          <Property Name="VirtualPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgencyBill_Agencies">
+          <End Role="Agencies" Type="Self.Agencies" Multiplicity="0..1" />
+          <End Role="AgencyBill" Type="Self.AgencyBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencies">
+              <PropertyRef Name="AgencyId" />
+            </Principal>
+            <Dependent Role="AgencyBill">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriverBill_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="DriverBill" Type="Self.DriverBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="DriverId" />
+            </Principal>
+            <Dependent Role="DriverBill">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MahanGashtModelStoreContainer">
+          <EntitySet Name="Agencies" EntityType="Self.Agencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgencyBill" EntityType="Self.AgencyBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calls" EntityType="Self.Calls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallTypes" EntityType="Self.CallTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverBill" EntityType="Self.DriverBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceTypes" EntityType="Self.ServiceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMS" EntityType="Self.SMS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VAgencies" EntityType="Self.VAgencies" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VAgencies].[RowId] AS [RowId], 
+    [VAgencies].[AgencyId] AS [AgencyId], 
+    [VAgencies].[ServiceTypeId] AS [ServiceTypeId], 
+    [VAgencies].[Code] AS [Code], 
+    [VAgencies].[CooperativeCode] AS [CooperativeCode], 
+    [VAgencies].[Name] AS [Name], 
+    [VAgencies].[Phones] AS [Phones], 
+    [VAgencies].[Mobile] AS [Mobile], 
+    [VAgencies].[Manager] AS [Manager], 
+    [VAgencies].[RegionCodes] AS [RegionCodes], 
+    [VAgencies].[Address] AS [Address], 
+    [VAgencies].[Vehicles] AS [Vehicles], 
+    [VAgencies].[Active] AS [Active], 
+    [VAgencies].[MaxCallDuration] AS [MaxCallDuration], 
+    [VAgencies].[MaxCallTimes] AS [MaxCallTimes], 
+    [VAgencies].[VirtualPhone] AS [VirtualPhone], 
+    [VAgencies].[SMSNumber] AS [SMSNumber], 
+    [VAgencies].[PostalCode] AS [PostalCode], 
+    [VAgencies].[Type] AS [Type]
+    FROM [dbo].[VAgencies] AS [VAgencies]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VCalls" EntityType="Self.VCalls" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VCalls].[CallId] AS [CallId], 
+    [VCalls].[Code] AS [Code], 
+    [VCalls].[Date] AS [Date], 
+    [VCalls].[Time] AS [Time], 
+    [VCalls].[Duration] AS [Duration], 
+    [VCalls].[CallerId] AS [CallerId], 
+    [VCalls].[AgencyName] AS [AgencyName], 
+    [VCalls].[DriverName] AS [DriverName], 
+    [VCalls].[CallTypeId] AS [CallTypeId], 
+    [VCalls].[CalledId] AS [CalledId], 
+    [VCalls].[Type] AS [Type], 
+    [VCalls].[ServiceType] AS [ServiceType], 
+    [VCalls].[ServiceTypeId] AS [ServiceTypeId], 
+    [VCalls].[CIdPart] AS [CIdPart]
+    FROM [dbo].[VCalls] AS [VCalls]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VCustomers" EntityType="Self.VCustomers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VCustomers].[RowId] AS [RowId], 
+    [VCustomers].[CustomerId] AS [CustomerId], 
+    [VCustomers].[Name] AS [Name], 
+    [VCustomers].[Code] AS [Code], 
+    [VCustomers].[AgencyId] AS [AgencyId], 
+    [VCustomers].[Phone] AS [Phone], 
+    [VCustomers].[Mobile] AS [Mobile], 
+    [VCustomers].[Address] AS [Address], 
+    [VCustomers].[AgencyName] AS [AgencyName], 
+    [VCustomers].[AgencyPhones] AS [AgencyPhones]
+    FROM [dbo].[VCustomers] AS [VCustomers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VDrivers" EntityType="Self.VDrivers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VDrivers].[RowId] AS [RowId], 
+    [VDrivers].[DriverId] AS [DriverId], 
+    [VDrivers].[ServiceTypeId] AS [ServiceTypeId], 
+    [VDrivers].[Code] AS [Code], 
+    [VDrivers].[Name] AS [Name], 
+    [VDrivers].[Phone] AS [Phone], 
+    [VDrivers].[Mobile] AS [Mobile], 
+    [VDrivers].[RegionCodes] AS [RegionCodes], 
+    [VDrivers].[Address] AS [Address], 
+    [VDrivers].[Services] AS [Services], 
+    [VDrivers].[Active] AS [Active], 
+    [VDrivers].[MaxCallDuration] AS [MaxCallDuration], 
+    [VDrivers].[MaxCallTimes] AS [MaxCallTimes], 
+    [VDrivers].[VirtualPhone] AS [VirtualPhone], 
+    [VDrivers].[PostalCode] AS [PostalCode], 
+    [VDrivers].[Type] AS [Type]
+    FROM [dbo].[VDrivers] AS [VDrivers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AgencyBill_Agencies" Association="Self.FK_AgencyBill_Agencies">
+            <End Role="Agencies" EntitySet="Agencies" />
+            <End Role="AgencyBill" EntitySet="AgencyBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriverBill_Drivers" Association="Self.FK_DriverBill_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriverBill" EntitySet="DriverBill" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MahanGashtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agency">
+          <Key>
+            <PropertyRef Name="AgencyId" />
+          </Key>
+          <Property Name="AgencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="CooperativeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegionCodes" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Vehicles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="MaxCallDuration" Type="Int32" />
+          <Property Name="MaxCallTimes" Type="Int32" />
+          <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SMSNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="sCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AgencyBills" Relationship="Self.FK_AgencyBill_Agencies" FromRole="Agencies" ToRole="AgencyBill" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AgencyBill">
+          <Key>
+            <PropertyRef Name="AgencyBillId" />
+          </Key>
+          <Property Name="AgencyBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgencyId" Type="Int32" />
+          <Property Name="MonthlyMembership" Type="Int32" />
+          <Property Name="SupportExpense" Type="Int32" />
+          <Property Name="CallExpense" Type="Int32" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="Paid" Type="Boolean" Nullable="false" />
+          <Property Name="SMSSent" Type="Boolean" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Precision="0" />
+          <Property Name="AmountToPay" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CallsCount" Type="Int32" />
+          <NavigationProperty Name="Agency" Relationship="Self.FK_AgencyBill_Agencies" FromRole="AgencyBill" ToRole="Agencies" />
+        </EntityType>
+        <EntityType Name="Call">
+          <Key>
+            <PropertyRef Name="CallId" />
+          </Key>
+          <Property Name="CallId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CallTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="CallerId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CalledId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CIdPart" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="AgencyId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CallType">
+          <Key>
+            <PropertyRef Name="CallTypeId" />
+          </Key>
+          <Property Name="CallTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="AgencyId" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DriverBill">
+          <Key>
+            <PropertyRef Name="DriverBillId" />
+          </Key>
+          <Property Name="DriverBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverId" Type="Int32" Nullable="false" />
+          <Property Name="MonthlyMembership" Type="Int32" />
+          <Property Name="SupportExpense" Type="Int32" />
+          <Property Name="CallExpense" Type="Int32" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="Paid" Type="Boolean" Nullable="false" />
+          <Property Name="SMSSent" Type="Boolean" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Precision="0" />
+          <Property Name="AmountToPay" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CallsCount" Type="Int32" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK_DriverBill_Drivers" FromRole="DriverBill" ToRole="Drivers" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverId" />
+          </Key>
+          <Property Name="DriverId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="RegionCodes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="MaxCallDuration" Type="Int32" />
+          <Property Name="MaxCallTimes" Type="Int32" />
+          <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DriverBills" Relationship="Self.FK_DriverBill_Drivers" FromRole="Drivers" ToRole="DriverBill" />
+        </EntityType>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="ServiceTypeId" />
+          </Key>
+          <Property Name="ServiceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Items" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerType" Type="Int32" Nullable="false" />
+          <Property Name="M1" Type="Int32" />
+          <Property Name="M2" Type="Int32" />
+          <Property Name="M3" Type="Int32" />
+          <Property Name="A1" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ToNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PCreated" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VAgency">
+          <Key>
+            <PropertyRef Name="AgencyId" />
+            <PropertyRef Name="ServiceTypeId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="CooperativeCode" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Phones" />
+            <PropertyRef Name="RegionCodes" />
+            <PropertyRef Name="Vehicles" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="RowId" Type="Int64" />
+          <Property Name="AgencyId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="CooperativeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegionCodes" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Vehicles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="MaxCallDuration" Type="Int32" />
+          <Property Name="MaxCallTimes" Type="Int32" />
+          <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SMSNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VCall">
+          <Key>
+            <PropertyRef Name="CallId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Time" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="CallTypeId" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="ServiceType" />
+            <PropertyRef Name="ServiceTypeId" />
+          </Key>
+          <Property Name="CallId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="CallerId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AgencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DriverName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CallTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CalledId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ServiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CIdPart" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VCustomer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="AgencyId" />
+            <PropertyRef Name="AgencyName" />
+            <PropertyRef Name="AgencyPhones" />
+          </Key>
+          <Property Name="RowId" Type="Int64" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="AgencyId" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AgencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgencyPhones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VDriver">
+          <Key>
+            <PropertyRef Name="DriverId" />
+            <PropertyRef Name="ServiceTypeId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Services" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="RowId" Type="Int64" />
+          <Property Name="DriverId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="RegionCodes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="MaxCallDuration" Type="Int32" />
+          <Property Name="MaxCallTimes" Type="Int32" />
+          <Property Name="VirtualPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgencyBill_Agencies">
+          <End Role="Agencies" Type="Self.Agency" Multiplicity="0..1" />
+          <End Role="AgencyBill" Type="Self.AgencyBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencies">
+              <PropertyRef Name="AgencyId" />
+            </Principal>
+            <Dependent Role="AgencyBill">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriverBill_Drivers">
+          <End Role="Drivers" Type="Self.Driver" Multiplicity="1" />
+          <End Role="DriverBill" Type="Self.DriverBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="DriverId" />
+            </Principal>
+            <Dependent Role="DriverBill">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MahanGashtEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agencies" EntityType="Self.Agency" />
+          <EntitySet Name="AgencyBills" EntityType="Self.AgencyBill" />
+          <EntitySet Name="Calls" EntityType="Self.Call" />
+          <EntitySet Name="CallTypes" EntityType="Self.CallType" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DriverBills" EntityType="Self.DriverBill" />
+          <EntitySet Name="Drivers" EntityType="Self.Driver" />
+          <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
+          <EntitySet Name="SMS" EntityType="Self.SM" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="VAgencies" EntityType="Self.VAgency" />
+          <EntitySet Name="VCalls" EntityType="Self.VCall" />
+          <EntitySet Name="VCustomers" EntityType="Self.VCustomer" />
+          <EntitySet Name="VDrivers" EntityType="Self.VDriver" />
+          <AssociationSet Name="FK_AgencyBill_Agencies" Association="Self.FK_AgencyBill_Agencies">
+            <End Role="Agencies" EntitySet="Agencies" />
+            <End Role="AgencyBill" EntitySet="AgencyBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriverBill_Drivers" Association="Self.FK_DriverBill_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriverBill" EntitySet="DriverBills" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MahanGashtModelStoreContainer" CdmEntityContainer="MahanGashtEntities">
+          <EntitySetMapping Name="Agencies">
+            <EntityTypeMapping TypeName="MahanGashtModel.Agency">
+              <MappingFragment StoreEntitySet="Agencies">
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CooperativeCode" ColumnName="CooperativeCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Vehicles" ColumnName="Vehicles" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+                <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+                <ScalarProperty Name="SMSNumber" ColumnName="SMSNumber" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="sCode" ColumnName="sCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgencyBills">
+            <EntityTypeMapping TypeName="MahanGashtModel.AgencyBill">
+              <MappingFragment StoreEntitySet="AgencyBill">
+                <ScalarProperty Name="AgencyBillId" ColumnName="AgencyBillId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="MonthlyMembership" ColumnName="MonthlyMembership" />
+                <ScalarProperty Name="SupportExpense" ColumnName="SupportExpense" />
+                <ScalarProperty Name="CallExpense" ColumnName="CallExpense" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="SMSSent" ColumnName="SMSSent" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CallsCount" ColumnName="CallsCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calls">
+            <EntityTypeMapping TypeName="MahanGashtModel.Call">
+              <MappingFragment StoreEntitySet="Calls">
+                <ScalarProperty Name="CallId" ColumnName="CallId" />
+                <ScalarProperty Name="CallTypeId" ColumnName="CallTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+                <ScalarProperty Name="CalledId" ColumnName="CalledId" />
+                <ScalarProperty Name="CIdPart" ColumnName="CIdPart" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallTypes">
+            <EntityTypeMapping TypeName="MahanGashtModel.CallType">
+              <MappingFragment StoreEntitySet="CallTypes">
+                <ScalarProperty Name="CallTypeId" ColumnName="CallTypeId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="MahanGashtModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverBills">
+            <EntityTypeMapping TypeName="MahanGashtModel.DriverBill">
+              <MappingFragment StoreEntitySet="DriverBill">
+                <ScalarProperty Name="DriverBillId" ColumnName="DriverBillId" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="MonthlyMembership" ColumnName="MonthlyMembership" />
+                <ScalarProperty Name="SupportExpense" ColumnName="SupportExpense" />
+                <ScalarProperty Name="CallExpense" ColumnName="CallExpense" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="SMSSent" ColumnName="SMSSent" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CallsCount" ColumnName="CallsCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="MahanGashtModel.Driver">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Services" ColumnName="Services" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+                <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTypes">
+            <EntityTypeMapping TypeName="MahanGashtModel.ServiceType">
+              <MappingFragment StoreEntitySet="ServiceTypes">
+                <ScalarProperty Name="A1" ColumnName="A1" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Items" ColumnName="Items" />
+                <ScalarProperty Name="OwnerType" ColumnName="OwnerType" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="M3" ColumnName="M3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMS">
+            <EntityTypeMapping TypeName="MahanGashtModel.SM">
+              <MappingFragment StoreEntitySet="SMS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="FromNumber" ColumnName="FromNumber" />
+                <ScalarProperty Name="ToNumber" ColumnName="ToNumber" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="PCreated" ColumnName="PCreated" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MahanGashtModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VAgencies">
+            <EntityTypeMapping TypeName="MahanGashtModel.VAgency">
+              <MappingFragment StoreEntitySet="VAgencies">
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CooperativeCode" ColumnName="CooperativeCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Vehicles" ColumnName="Vehicles" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+                <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+                <ScalarProperty Name="SMSNumber" ColumnName="SMSNumber" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VCalls">
+            <EntityTypeMapping TypeName="MahanGashtModel.VCall">
+              <MappingFragment StoreEntitySet="VCalls">
+                <ScalarProperty Name="CallId" ColumnName="CallId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+                <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="CallTypeId" ColumnName="CallTypeId" />
+                <ScalarProperty Name="CalledId" ColumnName="CalledId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="CIdPart" ColumnName="CIdPart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VCustomers">
+            <EntityTypeMapping TypeName="MahanGashtModel.VCustomer">
+              <MappingFragment StoreEntitySet="VCustomers">
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+                <ScalarProperty Name="AgencyPhones" ColumnName="AgencyPhones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VDrivers">
+            <EntityTypeMapping TypeName="MahanGashtModel.VDriver">
+              <MappingFragment StoreEntitySet="VDrivers">
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="RegionCodes" ColumnName="RegionCodes" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Services" ColumnName="Services" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="MaxCallTimes" ColumnName="MaxCallTimes" />
+                <ScalarProperty Name="VirtualPhone" ColumnName="VirtualPhone" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
